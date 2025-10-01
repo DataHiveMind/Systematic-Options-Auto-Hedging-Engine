@@ -83,6 +83,7 @@ make optimize
 # Run tests and type checks
 make test
 make typecheck
+```
 
 ## 📚 Documentation
 docs/architecture.md – System design and module interactions.
@@ -100,6 +101,6 @@ Quant Engineering: Modular pipelines, MLflow tracking, reproducible configs.
 
 Professional Standards: Testing, type safety, documentation, and CI‑ready workflows.
 
-##📌 Author
+#📌 Author
 Kenneth Quantitative Researcher | Applied Mathematics & Computer Science 
 Focus: Systematic trading, volatility modeling, and reproducible quant infrastructure.
