@@ -1,0 +1,59 @@
+{
+  "analysis_timestamp": "20251001_225328",
+  "total_tickers_analyzed": 5,
+  "total_strategies_tested": 10,
+  "optimization_enabled": true,
+  "optimization_results": {
+    "delta_neutral": {
+      "best_score": 0.0,
+      "best_params": {
+        "rebalance_frequency": "daily",
+        "hedge_ratio_multiplier": 1.0,
+        "volatility_window": 20
+      },
+      "optimization_method": "grid_search",
+      "status": "error"
+    },
+    "gamma_scaled": {
+      "best_score": 0.0,
+      "best_params": {
+        "scaling_factor": 1.5,
+        "rebalance_frequency": "daily",
+        "gamma_threshold": 0.02,
+        "hedge_ratio_multiplier": 1.0,
+        "volatility_window": 20
+      },
+      "optimization_method": "grid_search",
+      "status": "error"
+    }
+  },
+  "improvement_metrics": {
+    "delta_neutral": {
+      "avg_sharpe_after_optimization": 1.095716709537994,
+      "optimization_score": 0.0
+    },
+    "gamma_scaled": {
+      "avg_sharpe_after_optimization": 1.4369929298189648,
+      "optimization_score": 0.0
+    }
+  },
+  "best_policy_sharpe": {
+    "policy": "gamma_scaled",
+    "ticker": "GOOGL",
+    "sharpe_ratio": 4.895721375814311
+  },
+  "best_strategy_return": {
+    "strategy": "gamma_scaled",
+    "ticker": "GOOGL",
+    "return": 0.21871814109501103,
+    "sharpe_ratio": 1.4308771456737068
+  },
+  "average_performance": {
+    "avg_sharpe_ratio": 1.2663548196784795,
+    "avg_total_return": 0.018942276717163805
+  },
+  "risk_metrics": {
+    "avg_max_drawdown": -0.12541649362091917,
+    "avg_win_rate": 0.5585858585858585
+  }
+}

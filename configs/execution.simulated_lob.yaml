@@ -1,0 +1,10 @@
+# Simulated Limit Order Book (LOB) Configuration
+initial_price: 100.0
+spread: 0.05
+volatility: 0.2
+drift: 0.0
+time_step: 1/252  # Daily updates
+simulation_days: 252  # One trading year
+seed: 42
+order_book_depth: 10  # Number of levels in the order book
+execution_fee: 0.001  # Fee per trade as a fraction of trade value

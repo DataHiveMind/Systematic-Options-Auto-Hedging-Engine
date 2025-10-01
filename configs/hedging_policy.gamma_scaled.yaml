@@ -1,0 +1,6 @@
+# Gamma Scaled Hedging Policy
+hedging_policy:
+  type: gamma_scaled
+  parameters:
+    scaling_factor: 1.5
+    rebalance_frequency: daily

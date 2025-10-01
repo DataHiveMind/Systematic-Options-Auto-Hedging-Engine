@@ -1,0 +1,6 @@
+# Delta Neutral Hedging Policy
+hedging_policy:
+  type: delta_neutral
+  parameters:
+    rebalance_frequency: daily
+

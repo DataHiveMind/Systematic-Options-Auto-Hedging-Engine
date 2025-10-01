@@ -1,0 +1,15 @@
+# Black-Scholes Model Configuration
+model:
+  type: black_scholes_call
+  parameters:
+    risk_free_rate: 0.05
+    volatility: 0.2
+    dividend_yield: 0.01
+    option_type: call
+
+  type: black_scholes_put
+  parameters:
+    risk_free_rate: 0.05
+    volatility: 0.2
+    dividend_yield: 0.01
+    option_type: put

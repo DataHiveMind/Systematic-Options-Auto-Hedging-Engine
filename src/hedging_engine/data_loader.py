@@ -19,10 +19,8 @@ Dependencies:
 
 # Standard Library
 import warnings
-from typing import Optional
 
 # Third Party Libraries
-import numpy as np
 import pandas as pd
 from openbb import obb
 from openbb_core.provider.utils.errors import EmptyDataError
@@ -54,7 +52,13 @@ def load_data(
     # Remove duplicates while preserving order
     providers_to_try = list(dict.fromkeys(providers_to_try))
     
+    allowed_providers = [
+        "alpha_vantage", "cboe", "fmp", "intrinio", "polygon", "tiingo", "tmx", "tradier", "yfinance"
+    ]
     for current_provider in providers_to_try:
+        if current_provider not in allowed_providers:
+            print(f"Provider '{current_provider}' is not supported. Skipping.")
+            continue
         try:
             print(f"Attempting to load data with provider: {current_provider}")
             
@@ -63,7 +67,7 @@ def load_data(
                 symbol=tickers, 
                 start_date=start_date, 
                 end_date=end_date,
-                provider=current_provider
+                provider=current_provider 
             )
             
             # Convert to DataFrame using the correct method
@@ -126,6 +130,41 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     
     return df
 
+def save_report(content: str, ticker: str, report_format: str = "pdf") -> None:
+    """
+    Save the report content to a file in the specified format.
+
+    Args:
+        content (str): The content of the report.
+        ticker (str): The stock ticker symbol.
+        report_format (str): The format of the report ("pdf" or "html"). Defaults to "pdf".
+    """
+    filename = f"{ticker}_report.{report_format}"
+    
+    try:
+        if report_format == "pdf":
+            from fpdf import FPDF
+            
+            pdf = FPDF()
+            pdf.add_page()
+            pdf.set_auto_page_break(auto=True, margin=15)
+            pdf.set_font("Arial", size=12)
+            for line in content.split('\n'):
+                pdf.cell(0, 10, line, ln=True)
+            pdf.output(filename)
+        
+        elif report_format == "html":
+            with open(filename, 'w') as f:
+                f.write(f"<html><body><pre>{content}</pre></body></html>")
+        
+        else:
+            raise ValueError("Unsupported report format. Use 'pdf' or 'html'.")
+        
+        print(f"Report saved to {filename}")
+    
+    except Exception as e:
+        print(f"Failed to save report: {type(e).__name__}: {e}")
+
 def save_raw_data(df: pd.DataFrame, filename: str) -> None:
     """
     Save the raw DataFrame to a CSV file.
@@ -177,8 +216,8 @@ def main() -> None:
     Main function to demonstrate data loading and preprocessing.
     """
     tickers = "GOOG"
-    start_date = "2020-01-01"
-    end_date = "2023-01-01"
+    start_date = "2015-01-01"
+    end_date = "2025-01-01"
 
     try:
         print(f"Loading data for {tickers} from {start_date} to {end_date}")

@@ -1,0 +1,28 @@
+# Docker Compose configuration for the Hedging Engine
+version: '3.8'
+services:
+  hedging_engine:
+    build: .
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - LOG_LEVEL=INFO
+
+    command: python main.py
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=hedgeuser
+      - POSTGRES_PASSWORD=hedgepass
+      - POSTGRES_DB=hedgedb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+volumes:
+  db_data:
+    driver: local
