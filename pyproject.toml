@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel]
+build-backend = "setuptools.build_meta
+
+[project]
+name = "auto-hedging-engine"
+version = "0.1.0"
+description = "System options auto-hedging engine with greeks, policies, execution simulation, and MLflow tracking"
+authors = [
+    {name = "Kenneth", email = "kennethlegare5@gmail.com"}
+]
+
+readme = "README.md"
+licence = {text = "MIT"}
+
+requires-python = ">=3.11"
+keywords = ["quant", "options", "hedging", "execution", "market mircostructure"]
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "statsmodels",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "mlflow",
+    "pyyaml",
+    "tqdm",
+    "loguru",
+    "pydantic",
+    "cvxpy"
+    "openbb[all]"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "ruff",
+    "mypy",
+    "pre-commit",
+    "jupyter",
+    "notebook"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-verison = ["py311"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_verison = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minverison = "8.0"
+addopts = "-ra -q --cov=src --cov-report=term-missing"
+testpaths = ["tests]
+
+[tool.coverage.run]
+branch = true
+source = ["src]
+
+[tool.coverage.report]
+show_missing = true 
+skip_covered = true
