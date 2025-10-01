@@ -101,6 +101,7 @@ Quant Engineering: Modular pipelines, MLflow tracking, reproducible configs.
 
 Professional Standards: Testing, type safety, documentation, and CI‑ready workflows.
 
-#📌 Author
+##📌 Author
+
 Kenneth Quantitative Researcher | Applied Mathematics & Computer Science 
 Focus: Systematic trading, volatility modeling, and reproducible quant infrastructure.
